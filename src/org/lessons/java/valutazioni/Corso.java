@@ -23,7 +23,7 @@ public class Corso {
         System.out.println("Elenco degli studenti nel corso:");
         for (Studente studente : studentiList) {
             System.out.println("ID: " + studente.getStudentId() +
-                    ", Percentuale Assenze: " + studente.getPercentageAbsences() +
+                    ", Percentuale Assenze: " + studente.getPercentageAbsences() + "%" +
                     ", Media Voti: " + studente.getFormattedAverageGrades());
         }
     }
