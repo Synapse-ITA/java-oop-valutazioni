@@ -56,6 +56,10 @@ public class Studente {
         return averageGrades;
     }
 
+    public String getFormattedAverageGrades() {
+        return String.format("%.2f", averageGrades);
+    }
+
     public void setAverageGrades(BigDecimal averageGrades) throws IllegalArgumentException {
         checkNull(averageGrades, "Media voti");
         if (averageGrades.compareTo(BigDecimal.ZERO) < 0) {
@@ -74,21 +78,16 @@ public class Studente {
     }
 
     // METODO BOCCIATURA
-/*
-    - se lo studente ha fatto più del 50% di assenze è bocciato VV
-- se ha fatto tra il 25% e il 50% di assenze è promosso solo se la media dei voti è superiore a 2
-            - se ha fatto meno del 25% di assenze è promosso se la media dei voti è superiore o uguale a 2
 
- */
-    public String failureOrNot(int studentId, int percentageAbsences, BigDecimal averageGrades) {
+    public boolean isPromoted(int percentageAbsences, BigDecimal averageGrades) {
         if (percentageAbsences > 50) {
-            return studentId + " ha superato il 50% di assenze, è bocciato!";
+            return false; // Bocciato
         } else if (percentageAbsences >= 25 && percentageAbsences < 50 && averageGrades.compareTo(new BigDecimal("2")) > 0) {
-            return studentId + " è promosso!";
+            return true; // Promosso
         } else if (percentageAbsences < 25 && averageGrades.compareTo(new BigDecimal("2")) >= 0) {
-            return studentId + " è promosso!";
+            return true; // Promosso
         } else {
-            return studentId + " è bocciato!";
+            return false; // Bocciato
         }
     }
 
